@@ -69,21 +69,21 @@ export const services = [
   {
     title: 'Brand Identity',
     body: 'Logo systems, visual language, brand guidelines, and positioning frameworks that give your brand a soul — not just a look.',
-    image: '/images/8.png',
+    image: '/images/8.webp',
     objectPos: 'center top',
     tag: 'Identity',
   },
   {
     title: 'Creative Strategy',
     body: 'Insights-driven thinking that connects your brand truth to the cultural moment, turning strategy into ideas that resonate.',
-    image: '/images/8.png',
+    image: '/images/8.webp',
     objectPos: 'center center',
     tag: 'Strategy',
   },
   {
     title: 'Campaigns & Advertising',
     body: 'Integrated campaigns built for impact from concept to execution, across every channel your audience lives in.',
-    image: '/images/8.png',
+    image: '/images/8.webp',
     objectPos: 'center bottom',
     tag: 'Advertising',
   },
@@ -91,9 +91,10 @@ export const services = [
 
 export const work = {
   hero: {
+    eyebrow: 'SELECTED EXPLORATIONS',
     line1: 'IDEAS THAT',
     line2: 'MOVED MARKETS.',
-    sub: 'A curated selection of projects where strategy met craft, and brands discovered what they were truly capable of.',
+    sub: 'A set of concept explorations and speculative rebrands — a look at how we think and what we’d bring to a brand, not a list of delivered client engagements.',
   },
   filters: ['All', 'Branding', 'Campaigns', 'Digital', 'Strategy'],
   projects: [
@@ -105,7 +106,7 @@ export const work = {
     { title: 'Pulse Health', cat: 'Campaigns', tone: 'Awareness activation', image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80' },
     { title: 'Atlas Estates', cat: 'Digital', tone: 'Editorial web platform', image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=700&q=80' },
     { title: 'Lumen Media', cat: 'Strategy', tone: 'Brand architecture', image: 'https://images.unsplash.com/photo-1495020689067-958852172e31?auto=format&fit=crop&w=700&q=80' },
-    { title: 'Saffron House', cat: 'Branding', tone: 'F&B brand world', image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80' },
+    { title: 'Saffron House', cat: 'Branding', tone: 'F&B brand world', image: 'https://images.unsplash.com/photo-1587810997319-eeb8c236f2fc?auto=format&fit=crop&w=700&q=80' },
   ],
   pullScript: 'Bringing Vision to Life.',
   pullBold: 'Building Brands That Last.',
@@ -266,6 +267,8 @@ export const contact = {
     'Brand Consulting & Audit',
     'Not sure yet',
   ],
+  // TODO: replace YOUR_FORM_ID with your real Formspree form ID before launch —
+  // until then submissions will fail and fall back to the mailto link in the UI.
   formEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
   faq: [
     {
@@ -314,7 +317,7 @@ export const about = {
     ],
     quote: 'The best brands aren’t just recognisable. They’re irreplaceable. That’s what we build.',
     attribution: '— TM & Co. Studios',
-    media: { label: 'Studio photo', aspect: '4 / 5', image: '/images/home-2nd.png' },
+    media: { label: 'Studio photo', aspect: '4 / 5', image: '/images/home-2nd.webp' },
   },
   philosophyHeading: 'Brand Philosophy',
   philosophySub: 'Four core values that shape every project we take on.',

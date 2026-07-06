@@ -33,13 +33,21 @@ export default function Navbar() {
         <Logo className="text-xl md:text-2xl" />
 
         {/* Desktop links */}
-        <ul className="hidden items-center gap-9 md:flex">
-          {nav.map((item) => (
-            <li key={item.label}>
-              <NavItem item={item} active={pathname === item.to} />
-            </li>
-          ))}
-        </ul>
+        <div className="hidden items-center gap-9 md:flex">
+          <ul className="flex items-center gap-9">
+            {nav.map((item) => (
+              <li key={item.label}>
+                <NavItem item={item} active={pathname === item.to} />
+              </li>
+            ))}
+          </ul>
+          <Link
+            to="/contact"
+            className="rounded-full bg-lime px-5 py-2.5 text-sm font-semibold tracking-tight text-ink transition-colors duration-300 hover:bg-lime-soft"
+          >
+            Start a project
+          </Link>
+        </div>
 
         {/* Mobile toggle */}
         <button
@@ -84,6 +92,20 @@ export default function Navbar() {
                   <MobileLink item={item} onClick={() => setOpen(false)} />
                 </motion.li>
               ))}
+              <motion.li
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.05 * nav.length + 0.1 }}
+                className="mt-3"
+              >
+                <Link
+                  to="/contact"
+                  onClick={() => setOpen(false)}
+                  className="inline-flex items-center justify-center rounded-full bg-lime px-6 py-3 text-lg font-semibold tracking-tight text-ink"
+                >
+                  Start a project
+                </Link>
+              </motion.li>
             </ul>
           </motion.div>
         )}

@@ -22,10 +22,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Photo aspect-ratios + how wide each sits inside its column (from the Figma numbers).
 const PHOTOS = {
-  leftTop: { src: '/images/home-1st.png', alt: 'Creative design studio', ratio: '257 / 216.54' },
-  leftBottom: { src: '/images/home-2nd.png', alt: 'Workshop and strategy session', ratio: '431 / 254' },
-  rightTop: { src: '/images/home-3rd.png', alt: 'Team collaboration', ratio: '443 / 305' },
-  rightBottom: { src: '/images/home-4th.png', alt: 'Immersive technology', ratio: '417 / 213' },
+  leftTop: { src: '/images/home-1st.webp', alt: 'Creative design studio', ratio: '257 / 216.54' },
+  leftBottom: { src: '/images/home-2nd.webp', alt: 'Workshop and strategy session', ratio: '431 / 254' },
+  rightTop: { src: '/images/home-3rd.webp', alt: 'Team collaboration', ratio: '443 / 305' },
+  rightBottom: { src: '/images/home-4th.webp', alt: 'Immersive technology', ratio: '417 / 213' },
 }
 
 // The headline is a collage of tightly-cropped word images. They overlap, so they are
@@ -60,7 +60,14 @@ function Photo({ photo, style, className = '' }) {
       className={`m-0 overflow-hidden rounded-2xl ${className}`}
       style={{ clipPath: 'inset(0 0 0 0)', ...style }}
     >
-      <img src={photo.src} alt={photo.alt} loading="lazy" className="h-full w-full object-cover" />
+      <img
+        src={photo.src}
+        alt={photo.alt}
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+        className="h-full w-full object-cover"
+      />
     </figure>
   )
 }

@@ -96,6 +96,7 @@ export default function Landing({ onEnter }) {
       onMouseMove={handleMove}
       onTouchMove={handleMove}
       onClick={handleEnter}
+      onTouchEnd={handleEnter}
       initial={{ opacity: 1 }}
       animate={{ opacity: leaving ? 0 : 1 }}
       transition={{ duration: 0.55, ease: 'easeInOut' }}

@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="TM & Co. Studios — a full-service branding and marketing studio. We build brands that refuse to be ignored." />
+    <!-- Per-page <title>/description/OG/Twitter tags are injected by react-helmet-async
+         (see src/components/SEO.jsx) once the app mounts, so every route gets its own
+         unique tags instead of sharing this one. This title is only the pre-hydration
+         fallback for the fraction of a second before JS runs, or for crawlers that
+         don't execute JS at all. -->
     <title>TM &amp; Co. Studios — We build brands that refuse to be ignored</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,6 +16,28 @@
       href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://tmcostudios.com/#business",
+        "name": "TM & Co. Studios",
+        "legalName": "TM & CO. STUDIOS",
+        "description": "Full-service branding and marketing studio offering brand identity, creative strategy, campaigns, digital marketing, content production, and brand consulting.",
+        "url": "https://tmcostudios.com",
+        "email": "admin@tmcostudios.com",
+        "telephone": "+91-88104-81591",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "M3M IFC, Tower A, 8th floor",
+          "addressLocality": "Sector 65, Gurugram",
+          "addressRegion": "Haryana",
+          "addressCountry": "IN"
+        },
+        "areaServed": "Worldwide",
+        "priceRange": "$$"
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

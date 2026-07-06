@@ -37,6 +37,10 @@ export default function WorkHero() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } })
 
+      // Eyebrow disclosure line
+      const eyebrow = sectionRef.current.querySelector('[data-eyebrow]')
+      if (eyebrow) tl.from(eyebrow, { y: 20, opacity: 0, duration: 0.5 }, 0)
+
       // Headline word-aware char split
       const lines = headlineRef.current.querySelectorAll('[data-line]')
       lines.forEach((line, li) => {
@@ -88,6 +92,9 @@ export default function WorkHero() {
   return (
     <section ref={sectionRef} className="px-6 pt-36 md:px-10 md:pt-44">
       <div className="mx-auto max-w-[1400px]">
+        <p data-eyebrow className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-lime">
+          {hero.eyebrow}
+        </p>
         <h1
           ref={headlineRef}
           className="text-5xl font-bold leading-[1.02] tracking-tightest md:text-7xl"
@@ -134,9 +141,8 @@ export default function WorkHero() {
                     {p.title}
                   </h3>
                   <p className="relative mt-1 text-xs text-muted">{p.tone}</p>
-                  <span className="relative mt-4 inline-flex items-center gap-2 text-xs font-medium text-lime opacity-0 transition-all duration-500 group-hover:opacity-100">
-                    View project
-                    <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  <span className="relative mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.15em] text-lime/70 opacity-0 transition-all duration-500 group-hover:opacity-100">
+                    Concept exploration
                   </span>
                 </article>
               ))}

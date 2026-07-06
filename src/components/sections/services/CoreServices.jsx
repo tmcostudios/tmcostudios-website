@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { servicesPage } from '../../../data/content'
@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger)
 export default function CoreServices() {
   const { heading, list } = servicesPage
   const sectionRef = useRef(null)
+  const [activeIndex, setActiveIndex] = useState(-1)
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -73,6 +74,7 @@ export default function CoreServices() {
           <ol className="space-y-10 md:space-y-16">
             {list.map((service, i) => {
               const right = i % 2 === 1
+              const active = activeIndex === i
               return (
                 <li
                   key={service.n}
@@ -88,15 +90,30 @@ export default function CoreServices() {
                   <div
                     className={`pl-10 md:pl-0 ${right ? 'md:col-start-2 md:pl-16' : 'md:col-start-1 md:pr-16'}`}
                   >
-                    <div
+                    {/* A real button so tapping works on touch devices, not just
+                        CSS :hover which never fires on mobile. Click always
+                        *opens* this card (never toggles it closed) — some mobile
+                        browsers fire a simulated hover right before the click on
+                        first tap, which made toggle logic instantly close it again. */}
+                    <button
+                      type="button"
                       data-card
-                      tabIndex={0}
-                      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:border-lime/40 hover:bg-white/[0.04] hover:shadow-[0_20px_60px_-15px_rgba(174,238,45,0.25)] focus-within:-translate-y-1 focus-within:scale-[1.02] focus-within:border-lime/40 md:p-7"
+                      onMouseEnter={() => setActiveIndex(i)}
+                      onMouseLeave={() => setActiveIndex((cur) => (cur === i ? -1 : cur))}
+                      onClick={() => setActiveIndex(i)}
+                      aria-expanded={active}
+                      className={`group relative w-full overflow-hidden rounded-2xl border p-6 text-left transition-all duration-500 ease-out md:p-7 ${
+                        active
+                          ? '-translate-y-1 scale-[1.02] border-lime/40 bg-white/[0.04] shadow-[0_20px_60px_-15px_rgba(174,238,45,0.25)]'
+                          : 'border-white/10 bg-white/[0.02]'
+                      }`}
                     >
                       {/* Ghost numeral */}
                       <span
                         aria-hidden
-                        className="pointer-events-none absolute -bottom-6 -right-2 select-none font-black leading-none text-white/[0.04] transition-colors duration-500 group-hover:text-lime/[0.08]"
+                        className={`pointer-events-none absolute -bottom-6 -right-2 select-none font-black leading-none transition-colors duration-500 ${
+                          active ? 'text-lime/[0.08]' : 'text-white/[0.04]'
+                        }`}
                         style={{ fontSize: '6rem' }}
                       >
                         {service.n}
@@ -109,8 +126,11 @@ export default function CoreServices() {
                         </h3>
                       </div>
 
-                      {/* Hidden until hover: tags + description expand in place */}
-                      <div className="relative z-10 grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out group-hover:grid-rows-[1fr] group-focus-within:grid-rows-[1fr]">
+                      {/* Tags + description expand in place on hover (desktop) or tap (touch) */}
+                      <div
+                        className="relative z-10 grid transition-[grid-template-rows] duration-500 ease-out"
+                        style={{ gridTemplateRows: active ? '1fr' : '0fr' }}
+                      >
                         <div className="overflow-hidden">
                           <p className="mt-3 text-xs font-semibold uppercase tracking-[0.1em] text-lime/70">
                             {service.tags}
@@ -120,7 +140,7 @@ export default function CoreServices() {
                           </p>
                         </div>
                       </div>
-                    </div>
+                    </button>
                   </div>
                 </li>
               )

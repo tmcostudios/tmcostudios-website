@@ -14,9 +14,11 @@ export default function Preloader({ onComplete }) {
     const obj = { val: 0 }
     const tl = gsap.timeline()
 
+    // Kept brisk — this is pure loading time with no interactive value, so it
+    // stays well under the ~1.5s ceiling recommended for a first-visit gate.
     tl.to(obj, {
       val: 100,
-      duration: 2.2,
+      duration: 0.8,
       ease: 'power1.inOut',
       onUpdate() {
         const v = Math.floor(obj.val)
@@ -26,13 +28,13 @@ export default function Preloader({ onComplete }) {
       },
     })
 
-    tl.to({}, { duration: 0.12 })
+    tl.to({}, { duration: 0.08 })
 
     tl.to(
       [topRef.current, bottomRef.current],
       {
         yPercent: (i) => (i === 0 ? -100 : 100),
-        duration: 0.88,
+        duration: 0.5,
         ease: 'power3.inOut',
         onComplete() {
           document.body.style.overflow = ''

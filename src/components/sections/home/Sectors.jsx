@@ -79,13 +79,13 @@ export default function Sectors() {
         <div className="relative">
           <h2 data-heading className="relative z-10 flex flex-col gap-1 leading-[0.95] tracking-tightest">
             <span className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <img src="/images/built-for.png" alt="Built for" className="h-7 w-auto md:h-11" />
-              <img src="/images/ambition.png" alt="Ambition," className="h-9 w-auto md:h-14" />
+              <img src="/images/built-for.png" alt="Built for" loading="lazy" decoding="async" className="h-7 w-auto md:h-11" />
+              <img src="/images/ambition.png" alt="Ambition," loading="lazy" decoding="async" className="h-9 w-auto md:h-14" />
             </span>
             <span className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              <img src="/images/across.png" alt="Across" className="h-7 w-auto md:h-11" />
-              <img src="/images/any.png" alt="Any" className="h-9 w-auto md:h-14" />
-              <img src="/images/sector.png" alt="Sector." className="h-9 w-auto md:h-14" />
+              <img src="/images/across.png" alt="Across" loading="lazy" decoding="async" className="h-7 w-auto md:h-11" />
+              <img src="/images/any.png" alt="Any" loading="lazy" decoding="async" className="h-9 w-auto md:h-14" />
+              <img src="/images/sector.png" alt="Sector." loading="lazy" decoding="async" className="h-9 w-auto md:h-14" />
             </span>
           </h2>
 
@@ -106,6 +106,8 @@ export default function Sectors() {
           <img
             src="/images/cta-heading.png"
             alt={cta.scriptHeading}
+            loading="lazy"
+            decoding="async"
             className="mx-auto h-10 w-auto md:h-16"
           />
           <p className="mt-5 text-base leading-relaxed text-paper/85 md:text-lg">
@@ -116,6 +118,8 @@ export default function Sectors() {
         <img
           src="/images/wordmark-watermark.png"
           alt=""
+          loading="lazy"
+          decoding="async"
           className="pointer-events-none absolute inset-x-0 bottom-0 -z-0 w-full max-w-none translate-y-1/3 brightness-[0.28] saturate-150"
         />
       </div>

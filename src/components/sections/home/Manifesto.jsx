@@ -90,6 +90,7 @@ export default function Manifesto() {
             className="pointer-events-none absolute inset-0 h-full w-full object-cover"
             src="/videos/manifesto-bg.mp4"
             poster="/videos/manifesto-bg-poster.jpg"
+            preload="metadata"
             autoPlay
             loop
             muted
@@ -114,8 +115,10 @@ export default function Manifesto() {
             <blockquote className="mx-auto max-w-3xl text-center">
               <img
                 data-quote
-                src="/images/7.png"
+                src="/images/7.webp"
                 alt="Great brands aren't built on logos. They're built on conviction and we bring both."
+                loading="lazy"
+                decoding="async"
                 className="mx-auto w-full max-w-xl"
               />
               <footer className="mt-10 text-sm text-paper/60">{manifesto.attribution}</footer>

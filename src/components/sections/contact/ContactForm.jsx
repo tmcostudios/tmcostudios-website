@@ -78,6 +78,17 @@ export default function ContactForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot — invisible to real visitors, Formspree silently discards
+                    any submission where this is filled in (bots fill every field). */}
+                <input
+                  type="text"
+                  name="_gotcha"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="absolute left-[-9999px] h-0 w-0 opacity-0"
+                />
+
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div>
                     <label htmlFor="name" className="mb-2 block text-sm font-medium text-paper/80">
@@ -138,10 +149,22 @@ export default function ContactForm() {
 
                   {status === 'error' && (
                     <p className="text-sm text-red-400">
-                      Something went wrong. Please try again or email us directly.
+                      Something went wrong. Please try again, or email us directly at{' '}
+                      <a href={`mailto:${contact.email}`} className="underline hover:text-red-300">
+                        {contact.email}
+                      </a>
+                      .
                     </p>
                   )}
                 </div>
+
+                <p className="text-xs text-muted">
+                  Prefer email? Reach us directly at{' '}
+                  <a href={`mailto:${contact.email}`} className="text-lime hover:text-lime-soft">
+                    {contact.email}
+                  </a>
+                  .
+                </p>
               </form>
             )}
           </div>

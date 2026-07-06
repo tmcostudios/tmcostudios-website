@@ -77,15 +77,15 @@ export default function Concert() {
           <div className="flex items-center">
             <div
               data-circle
-              className="h-[260px] w-[260px] flex-shrink-0 rounded-full bg-[url('/images/circle-inside-1.png')] bg-cover bg-center md:h-[320px] md:w-[320px]"
+              className="h-[260px] w-[260px] flex-shrink-0 rounded-full bg-[url('/images/circle-inside-1.webp')] bg-cover bg-center md:h-[320px] md:w-[320px]"
             />
             <div
               data-circle
-              className="ml-5 h-[200px] w-[110px] flex-shrink-0 rounded-l-full bg-[url('/images/circle-inside-2.png')] bg-[length:427px_349px] bg-[position:-170px_-77px] md:h-[250px] md:w-[130px] md:bg-[length:534px_436px] md:bg-[position:-212px_-96px]"
+              className="ml-5 h-[200px] w-[110px] flex-shrink-0 rounded-l-full bg-[url('/images/circle-inside-2.webp')] bg-[length:427px_349px] bg-[position:-170px_-77px] md:h-[250px] md:w-[130px] md:bg-[length:534px_436px] md:bg-[position:-212px_-96px]"
             />
             <div
               data-circle
-              className="ml-5 h-[140px] w-[70px] flex-shrink-0 rounded-l-full bg-[url('/images/circle-inside-3.png')] bg-cover bg-center md:h-[180px] md:w-[90px]"
+              className="ml-5 h-[140px] w-[70px] flex-shrink-0 rounded-l-full bg-[url('/images/circle-inside-3.webp')] bg-cover bg-center md:h-[180px] md:w-[90px]"
             />
           </div>
         </div>
