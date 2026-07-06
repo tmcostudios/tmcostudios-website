@@ -85,7 +85,7 @@ export default function Services() {
     <section ref={sectionRef} className="relative px-6 py-24 md:px-10 md:py-40">
       {/* Background circle */}
       <img
-        src="/images/circle 1.png"
+        src="/images/circle-1.png"
         alt=""
         className="pointer-events-none absolute left-0 top-0 -z-10 w-full h-auto object-contain"
         aria-hidden="true"
