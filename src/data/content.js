@@ -267,9 +267,8 @@ export const contact = {
     'Brand Consulting & Audit',
     'Not sure yet',
   ],
-  // TODO: replace YOUR_FORM_ID with your real Formspree form ID before launch —
-  // until then submissions will fail and fall back to the mailto link in the UI.
-  formEndpoint: 'https://formspree.io/f/YOUR_FORM_ID',
+  formEndpoint: 'https://api.web3forms.com/submit',
+  formAccessKey: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
   faq: [
     {
       q: 'What types of clients do you work with?',

@@ -157,15 +157,12 @@ export default function Landing({ onEnter }) {
 
 function Wordmark({ sharp = false }) {
   return (
-    <p
-      className={`font-sans font-bold lowercase leading-none tracking-tightest ${
-        sharp ? 'text-lime' : 'text-paper/70'
-      }`}
-      style={{ fontSize: 'clamp(2.75rem, 9vw, 6.5rem)' }}
-    >
-      tm<span className="px-2 font-normal opacity-70">&amp;</span>co
-      <span className="pl-3">studios</span>
-    </p>
+    <img
+      src="/images/logo.svg"
+      alt="TM & Co. Studios"
+      className={sharp ? 'opacity-100' : 'opacity-70'}
+      style={{ width: 'clamp(220px, 42vw, 520px)', height: 'auto' }}
+    />
   )
 }
 

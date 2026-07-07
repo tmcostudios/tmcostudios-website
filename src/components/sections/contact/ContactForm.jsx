@@ -8,9 +8,72 @@ gsap.registerPlugin(ScrollTrigger)
 const inputCls =
   'w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3.5 text-base text-paper placeholder:text-muted/70 transition-colors duration-300 focus:border-lime focus:outline-none'
 
+function ServiceSelect({ id, name, options, value, onChange }) {
+  const [open, setOpen] = useState(false)
+  const wrapRef = useRef(null)
+
+  useEffect(() => {
+    function handleOutside(e) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false)
+    }
+    document.addEventListener('mousedown', handleOutside)
+    return () => document.removeEventListener('mousedown', handleOutside)
+  }, [])
+
+  return (
+    <div ref={wrapRef} className="relative">
+      <input type="hidden" name={name} value={value} />
+      <button
+        id={id}
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className={`${inputCls} flex items-center justify-between text-left ${
+          value ? 'text-paper' : 'text-muted/70'
+        }`}
+      >
+        <span>{value || 'Select a service'}</span>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          className={`ml-3 shrink-0 text-muted transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+        >
+          <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {open && (
+        <ul
+          role="listbox"
+          className="absolute z-20 mt-2 w-full overflow-hidden rounded-lg border border-white/10 bg-ink-2 py-1.5 shadow-xl shadow-black/30"
+        >
+          {options.map((s) => (
+            <li key={s} role="option" aria-selected={value === s}>
+              <button
+                type="button"
+                onClick={() => {
+                  onChange(s)
+                  setOpen(false)
+                }}
+                className={`block w-full px-4 py-2.5 text-left text-sm transition-colors duration-150 ${
+                  value === s ? 'bg-lime/10 text-lime' : 'text-paper/85 hover:bg-white/5 hover:text-paper'
+                }`}
+              >
+                {s}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
 export default function ContactForm() {
   const sectionRef = useRef(null)
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
+  const [service, setService] = useState('')
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -33,18 +96,22 @@ export default function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const form = e.target
-    const data = new FormData(form)
+    // Web3Forms only returns JSON (vs. its HTML fallback page) when the body
+    // is sent as application/json rather than multipart/form-data.
+    const payload = Object.fromEntries(new FormData(form).entries())
 
     setStatus('submitting')
     try {
       const res = await fetch(contact.formEndpoint, {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
       })
-      if (!res.ok) throw new Error('Submission failed')
+      const result = await res.json()
+      if (!res.ok || !result.success) throw new Error('Submission failed')
       setStatus('success')
       form.reset()
+      setService('')
     } catch {
       setStatus('error')
     }
@@ -78,11 +145,15 @@ export default function ContactForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Honeypot — invisible to real visitors, Formspree silently discards
-                    any submission where this is filled in (bots fill every field). */}
+                <input type="hidden" name="access_key" value={contact.formAccessKey} />
+                <input type="hidden" name="subject" value="New Enquiry — TM & Co. Studios Website" />
+                <input type="hidden" name="from_name" value="TM & Co. Studios Website" />
+
+                {/* Honeypot — invisible to real visitors, Web3Forms silently discards
+                    any submission where this checkbox is checked (bots fill every field). */}
                 <input
-                  type="text"
-                  name="_gotcha"
+                  type="checkbox"
+                  name="botcheck"
                   tabIndex={-1}
                   autoComplete="off"
                   aria-hidden="true"
@@ -115,12 +186,13 @@ export default function ContactForm() {
                     <label htmlFor="service" className="mb-2 block text-sm font-medium text-paper/80">
                       Service interested in
                     </label>
-                    <select id="service" name="service" defaultValue="" className={inputCls}>
-                      <option value="" disabled>Select a service</option>
-                      {contact.services.map((s) => (
-                        <option key={s} value={s}>{s}</option>
-                      ))}
-                    </select>
+                    <ServiceSelect
+                      id="service"
+                      name="service"
+                      options={contact.services}
+                      value={service}
+                      onChange={setService}
+                    />
                   </div>
                 </div>
 
