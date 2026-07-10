@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export default function Logo({ className = '', onClick, style }) {
+export default function Logo({ className = '', imgClassName = '', dark = false, onClick, style }) {
   return (
     <Link
       to="/"
@@ -12,7 +12,7 @@ export default function Logo({ className = '', onClick, style }) {
       <img
         src="/images/logo.svg"
         alt="TM & Co. Studios"
-        className="h-[1em] w-auto object-contain"
+        className={`h-[1em] w-auto object-contain ${dark ? 'brightness-0' : ''} ${imgClassName}`}
       />
     </Link>
   )

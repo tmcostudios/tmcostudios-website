@@ -1,12 +1,10 @@
-import { Suspense, lazy, useRef, useEffect } from 'react'
+import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { process as processContent } from '../../../data/content'
 import splitWords from '../../../utils/splitWords'
 
 gsap.registerPlugin(ScrollTrigger)
-
-const ProcessOrbit = lazy(() => import('../../three/ProcessOrbit'))
 
 export default function ProcessHero() {
   const { hero } = processContent
@@ -50,15 +48,29 @@ export default function ProcessHero() {
 
   return (
     <section ref={sectionRef} className="relative isolate overflow-hidden px-6 pb-24 pt-32 md:px-10 md:pb-32 md:pt-44">
-      {/* Signature 3D scene — five nodes orbiting a ring, echoing the five-stage process */}
+      {/* Theme background — grid texture + soft lime glow, non-interactive */}
       <div
         data-canvas
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-[70vh] opacity-60 md:h-[85vh]"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-0 h-[70vh] md:h-[85vh]"
       >
-        <Suspense fallback={null}>
-          <ProcessOrbit />
-        </Suspense>
+        <div
+          className="absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, #F4F4F0 1px, transparent 1px), linear-gradient(to bottom, #F4F4F0 1px, transparent 1px)',
+            backgroundSize: '64px 64px',
+          }}
+        />
+        <div
+          className="absolute -right-1/4 -top-1/4 h-[60vh] w-[60vh] rounded-full opacity-30 blur-[120px]"
+          style={{ background: 'radial-gradient(circle, #AEEE2D, transparent 70%)' }}
+        />
+        <div
+          className="absolute -left-1/4 top-1/3 h-[45vh] w-[45vh] rounded-full opacity-20 blur-[100px]"
+          style={{ background: 'radial-gradient(circle, #d8d8d2, transparent 70%)' }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-ink" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1400px]">

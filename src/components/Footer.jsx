@@ -3,6 +3,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Link } from 'react-router-dom'
 import { brand, cta, home, services } from '../data/content'
+import Logo from './Logo'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -28,23 +29,27 @@ export default function Footer() {
   }, [])
 
   return (
-    <footer ref={footerRef} id="contact" className="relative overflow-hidden bg-[#E7EBEE] text-ink">
-      <div className="mx-auto max-w-[1520px] px-6 py-14 md:px-10 md:py-20 lg:py-24">
-        <div className="grid gap-12 lg:grid-cols-[0.95fr_0.95fr_0.95fr_1.2fr] lg:gap-16">
+    <footer ref={footerRef} id="contact" className="relative overflow-hidden bg-lime text-ink">
+      <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-10 md:py-12">
+        <div data-footer-block className="mb-9">
+          <Logo dark imgClassName="h-6 md:h-7" />
+        </div>
+
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[0.75fr_0.75fr_0.75fr_1.15fr] lg:gap-10">
           <div data-footer-block>
-            <p className="text-[0.92rem] font-semibold tracking-[-0.03em] text-ink md:text-[1rem]">Company:</p>
-            <ul className="mt-7 space-y-4 text-[1.1rem] leading-none tracking-[-0.04em] text-ink/92 md:text-[1.45rem]">
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/work">Work</Link></li>
-              <li><Link to="/services">Services</Link></li>
-              <li><Link to="/process">Process</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+            <p className="text-[0.85rem] font-semibold tracking-[-0.03em] text-ink/70">Company:</p>
+            <ul className="mt-4 space-y-2.5 text-[1rem] tracking-[-0.03em] text-ink/92">
+              <li><Link to="/about" className="transition-colors hover:text-ink/70">About</Link></li>
+              <li><Link to="/work" className="transition-colors hover:text-ink/70">Work</Link></li>
+              <li><Link to="/services" className="transition-colors hover:text-ink/70">Services</Link></li>
+              <li><Link to="/process" className="transition-colors hover:text-ink/70">Process</Link></li>
+              <li><Link to="/contact" className="transition-colors hover:text-ink/70">Contact</Link></li>
             </ul>
           </div>
 
           <div data-footer-block>
-            <p className="text-[0.92rem] font-semibold tracking-[-0.03em] text-ink md:text-[1rem]">Services:</p>
-            <ul className="mt-7 space-y-4 text-[1.1rem] leading-none tracking-[-0.04em] text-ink/92 md:text-[1.45rem]">
+            <p className="text-[0.85rem] font-semibold tracking-[-0.03em] text-ink/70">Services:</p>
+            <ul className="mt-4 space-y-2.5 text-[1rem] tracking-[-0.03em] text-ink/92">
               {services.map((service) => (
                 <li key={service.title}>{service.title}</li>
               ))}
@@ -52,17 +57,17 @@ export default function Footer() {
           </div>
 
           <div data-footer-block>
-            <p className="text-[0.92rem] font-semibold tracking-[-0.03em] text-ink md:text-[1rem]">Industries:</p>
-            <ul className="mt-7 space-y-4 text-[1.1rem] leading-none tracking-[-0.04em] text-ink/92 md:text-[1.45rem]">
+            <p className="text-[0.85rem] font-semibold tracking-[-0.03em] text-ink/70">Industries:</p>
+            <ul className="mt-4 space-y-2.5 text-[1rem] tracking-[-0.03em] text-ink/92">
               {home.sectors.map((sector) => (
                 <li key={sector}>{sector}</li>
               ))}
             </ul>
           </div>
 
-          <div data-footer-block className="lg:pl-4">
-            <p className="text-[0.92rem] font-semibold tracking-[-0.03em] text-ink md:text-[1rem]">Get in touch:</p>
-            <div className="mt-7 space-y-3 text-[1rem] tracking-[-0.03em] text-ink/80 md:text-[1.1rem]">
+          <div data-footer-block>
+            <p className="text-[0.85rem] font-semibold tracking-[-0.03em] text-ink/70">Get in touch:</p>
+            <div className="mt-4 space-y-2 text-[0.95rem] tracking-[-0.03em] text-ink/80">
               <a
                 href={`mailto:${brand.email}`}
                 className="block transition-colors hover:text-ink"
@@ -85,19 +90,19 @@ export default function Footer() {
               </a>
             </div>
 
-            <p className="mt-10 text-[0.92rem] font-semibold tracking-[-0.03em] text-ink md:text-[1rem]">Subscribe to our news and updates</p>
-            <form className="mt-7 max-w-[28rem]">
+            <p className="mt-6 text-[0.85rem] font-semibold tracking-[-0.03em] text-ink/70">Subscribe to our news and updates</p>
+            <form className="mt-3 max-w-[26rem]">
               <label className="sr-only" htmlFor="footer-email">Email address</label>
-              <div className="flex items-end gap-3 border-b border-ink/20 pb-4">
+              <div className="flex items-end gap-3 border-b border-ink/20 pb-2.5">
                 <input
                   id="footer-email"
                   type="email"
                   placeholder="Your email here"
-                  className="min-w-0 flex-1 bg-transparent text-[1.05rem] tracking-[-0.03em] text-ink placeholder:text-ink/25 focus:outline-none md:text-[1.15rem]"
+                  className="min-w-0 flex-1 bg-transparent text-[0.95rem] tracking-[-0.03em] text-ink placeholder:text-ink/25 focus:outline-none"
                 />
                 <button
                   type="button"
-                  className="flex h-10 w-10 items-center justify-center rounded-full text-ink transition-colors hover:bg-ink hover:text-[#E7EBEE]"
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-ink transition-colors hover:bg-ink hover:text-lime"
                   aria-label="Subscribe"
                 >
                   →
@@ -105,43 +110,28 @@ export default function Footer() {
               </div>
             </form>
 
-            <p className="mt-7 max-w-md text-[0.95rem] leading-relaxed tracking-[-0.02em] text-ink/55 md:text-[1.05rem]">
+            <p className="mt-4 max-w-md text-[0.82rem] leading-relaxed tracking-[-0.02em] text-ink/55">
               {cta.body} <span className="border-b border-ink/20 text-ink/75">Privacy Policy</span>. {cta.accent}
             </p>
 
-            <div className="mt-12">
-              <p className="text-[0.92rem] font-semibold tracking-[-0.03em] text-ink md:text-[1rem]">Follow us on:</p>
-              <div className="mt-5 flex flex-wrap gap-4">
-                {['ig', 'be', 'li', 'x'].map((item) => (
-                  <span
-                    key={item}
-                    className="flex h-16 w-16 items-center justify-center rounded-full border border-ink/15 bg-[#F2F4F5] text-[0.95rem] font-semibold tracking-[-0.03em] text-ink/80 shadow-[0_1px_0_rgba(255,255,255,0.55)_inset]"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {['ig', 'be', 'li', 'x'].map((item) => (
+                <span
+                  key={item}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-ink/15 bg-lime-soft text-[0.78rem] font-semibold tracking-[-0.03em] text-ink/80 shadow-[0_1px_0_rgba(255,255,255,0.55)_inset]"
+                >
+                  {item}
+                </span>
+              ))}
             </div>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-6 border-t border-ink/10 pt-8 md:mt-20 md:flex-row md:items-center md:justify-between">
-          <div className="flex items-center gap-4">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-ink text-[0.72rem] font-semibold tracking-[0.22em] text-[#E7EBEE]">
-              TM
-            </span>
-            <p className="text-[1.05rem] font-medium tracking-[-0.03em] text-ink">
-              {brand.name}
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4 text-[0.95rem] tracking-[-0.02em] text-ink/55 md:justify-end md:text-[1rem]">
-            <p>© {brand.year} {brand.legalName}. All rights reserved.</p>
-            <span className="hidden h-1.5 w-1.5 rounded-full bg-ink/70 md:inline-block" />
-            <a href="#contact" className="text-ink transition-colors hover:text-ink/70">
-              Privacy Policy
-            </a>
-          </div>
+        <div className="mt-9 flex flex-col gap-3 border-t border-ink/10 pt-6 text-[0.85rem] tracking-[-0.02em] text-ink/55 md:flex-row md:items-center md:justify-between">
+          <p>© {brand.year} {brand.legalName}. All rights reserved.</p>
+          <a href="#contact" className="text-ink transition-colors hover:text-ink/70">
+            Privacy Policy
+          </a>
         </div>
       </div>
     </footer>

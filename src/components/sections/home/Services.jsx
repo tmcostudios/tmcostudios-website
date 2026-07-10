@@ -171,7 +171,7 @@ export default function Services() {
 
         <p
           data-spectrum
-          className="ml-auto mt-16 max-w-md text-right text-base font-medium leading-relaxed text-paper md:text-lg"
+          className="mt-16 max-w-md text-left text-base font-medium leading-relaxed text-paper md:text-lg"
         >
           <span className="text-lime">
             We operate across the entire marketing spectrum
